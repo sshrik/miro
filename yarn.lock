@@ -168,6 +168,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@miketmoore/maze-generator@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@miketmoore/maze-generator@npm:2.0.3"
+  bin:
+    maze-generator: bin/maze-generator-js.js
+  checksum: 10c0/bfe483c9b3f978be758cc9b472dfa70eb9136c14a1b9ff4998a87ce8c94449122379905cde42a99c5c5d948b59570e7d4bbc84b274fbeac64a3f01cbc3b56686
+  languageName: node
+  linkType: hard
+
 "@next/env@npm:14.1.4":
   version: 14.1.4
   resolution: "@next/env@npm:14.1.4"
@@ -1265,6 +1274,7 @@ __metadata:
   resolution: "miro@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^1.6.2"
+    "@miketmoore/maze-generator": "npm:^2.0.3"
     "@radix-ui/react-slot": "npm:^1.0.2"
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
