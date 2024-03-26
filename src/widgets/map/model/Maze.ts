@@ -1,6 +1,8 @@
-export const ROAD = 0;
-export const WALL = 1;
-export const START = 2;
-export const END = 3;
+export enum CellEnum {
+	ROAD = "ROAD",
+	WALL = "WALL",
+	START = "START",
+	END = "END",
+}
 
-export type CellType = typeof ROAD | typeof WALL | typeof START | typeof END;
+export type CellType = keyof typeof CellEnum;

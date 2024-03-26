@@ -1,5 +1,5 @@
 import { useCreateMaze } from "@/widgets/map/libs";
-import { END, START } from "@/widgets/map/model";
+import { CellEnum } from "@/widgets/map/model";
 import { renderHook } from "@testing-library/react";
 
 describe("useCreateMaze", () => {
@@ -25,9 +25,9 @@ describe("useCreateMaze", () => {
 
 		for (let h = 0; h < HEIGHT * 2 + 1; h++) {
 			for (let w = 0; w < WIDTH * 2 + 1; w++) {
-				if (maze[h][w] === START) {
+				if (maze[h][w] === CellEnum.START) {
 					start = true;
-				} else if (maze[h][w] === END) {
+				} else if (maze[h][w] === CellEnum.END) {
 					end = true;
 				}
 			}
