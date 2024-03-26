@@ -2,6 +2,7 @@ import type { CellType } from "@/entities/cell/model";
 import { Character } from "@/features/character/model";
 import { createMaze } from "@/features/maze/libs";
 import type { Position } from "@/entities/position/model";
+import { UnacceptableMazeSizeError } from "@/features/maze/model";
 
 class Maze {
 	private _maze: CellType[][];
@@ -13,6 +14,10 @@ class Maze {
 	private _end: Position;
 
 	constructor(width: number, height: number) {
+		if (width <= 0 || height <= 0) {
+			throw new UnacceptableMazeSizeError();
+		}
+
 		const { maze, start, end } = createMaze(width, height);
 
 		this._maze = maze;

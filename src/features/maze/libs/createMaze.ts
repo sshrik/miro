@@ -1,7 +1,12 @@
 import { CellEnum, type CellType } from "@/entities/cell/model";
+import { UnacceptableMazeSizeError } from "@/features/maze/model";
 import { mazeGenerator } from "@miketmoore/maze-generator";
 
 const createMaze = (width: number, height: number) => {
+	if (width <= 0 || height <= 0) {
+		throw new UnacceptableMazeSizeError();
+	}
+
 	const map = mazeGenerator({ rows: height, columns: width });
 
 	const maze: CellType[][] = Array.from({ length: height * 2 + 1 }, () =>
