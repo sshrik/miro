@@ -20,9 +20,9 @@ const Maze: React.FC<MazeProps> = (props) => {
 
 	if (maze) {
 		return (
-			<div className="flex flex-col gap-2">
+			<div className="flex flex-col">
 				{maze.maze.map((row, rowIndex) => (
-					<div key={rowIndex} className="flex gap-2">
+					<div key={rowIndex} className="flex">
 						{row.map((cell, cellIndex) => (
 							<Cell key={cellIndex} type={cell} />
 						))}

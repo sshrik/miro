@@ -1,4 +1,6 @@
 import { CellEnum, type CellType } from "@/entities/cell/model";
+import Road from "./Road";
+import Wall from "./Wall";
 
 type CellProps = {
 	type: CellType;
@@ -9,9 +11,9 @@ const Cell: React.FC<CellProps> = (props) => {
 
 	switch (type) {
 		case CellEnum.ROAD:
-			return <div className="w-8 h-8 bg-white" />;
+			return <Road />;
 		case CellEnum.WALL:
-			return <div className="w-8 h-8 bg-gray-500" />;
+			return <Wall />;
 		case CellEnum.START:
 			return <div className="w-8 h-8 bg-blue-500" />;
 		case CellEnum.END:
