@@ -13,7 +13,7 @@ const Wall: React.FC = () => {
 	return (
 		<div className="relative" style={{ width: CellSize, height: CellSize }}>
 			<Image
-				src="/assets/road/bg.jpeg"
+				src="/assets/road/bg.png"
 				width={CellSize}
 				height={CellSize}
 				alt="Road background"
