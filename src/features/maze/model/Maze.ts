@@ -1,13 +1,10 @@
 import type { CellType } from "@/entities/cell/model";
-import { Character } from "@/features/character/model";
 import { createMaze } from "@/features/maze/libs";
 import type { Position } from "@/entities/position/model";
 import { UnacceptableMazeSizeError } from "@/features/maze/model";
 
 class Maze {
 	private _maze: CellType[][];
-
-	private _character: Character;
 
 	private _start: Position;
 
@@ -23,7 +20,6 @@ class Maze {
 		this._maze = maze;
 		this._start = start;
 		this._end = end;
-		this._character = new Character(start);
 	}
 
 	get maze() {
@@ -44,10 +40,6 @@ class Maze {
 
 	getEnd() {
 		return this._end;
-	}
-
-	get character() {
-		return this._character;
 	}
 }
 

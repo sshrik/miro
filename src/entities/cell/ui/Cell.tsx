@@ -15,7 +15,7 @@ const Cell: React.FC<CellProps> = (props) => {
 		case CellEnum.WALL:
 			return <Wall />;
 		case CellEnum.START:
-			return <div className="w-8 h-8 bg-blue-500" />;
+			return <Road />;
 		case CellEnum.END:
 			return <div className="w-8 h-8 bg-red-500" />;
 		default:

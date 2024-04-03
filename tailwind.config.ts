@@ -68,10 +68,43 @@ const config = {
 					from: { height: "var(--radix-accordion-content-height)" },
 					to: { height: "0" },
 				},
+				"character-walk": {
+					"0%": { transform: "rotate(0)" },
+					"12.5%": { transform: "rotate(10deg)" },
+					"37.5%": { transform: "rotate(-10deg)" },
+					"52.5%": { transform: "rotate(10deg)" },
+					"77.5%": { transform: "rotate(-10deg)" },
+					"100%": { transform: "rotate(0)" },
+				},
+				"character-blocked-up": {
+					"0%": { transform: "translateY(0)" },
+					"50%": { transform: "translateY(-10px)" },
+					"100%": { transform: "translateY(0)" },
+				},
+				"character-blocked-down": {
+					"0%": { transform: "translateY(0)" },
+					"50%": { transform: "translateY(10px)" },
+					"100%": { transform: "translateY(0)" },
+				},
+				"character-blocked-left": {
+					"0%": { transform: "translateX(0)" },
+					"50%": { transform: "translateX(-10px)" },
+					"100%": { transform: "translateX(0)" },
+				},
+				"character-blocked-right": {
+					"0%": { transform: "translateX(0)" },
+					"50%": { transform: "translateX(10px)" },
+					"100%": { transform: "translateX(0)" },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+				"character-walk": "character-walk 0.5s",
+				"character-blocked-up": "character-blocked-up 0.5s",
+				"character-blocked-down": "character-blocked-down 0.5s",
+				"character-blocked-left": "character-blocked-left 0.5s",
+				"character-blocked-right": "character-blocked-right 0.5s",
 			},
 			fontFamily: {
 				sans: ["var(--font-sans)", ...fontFamily.sans],
