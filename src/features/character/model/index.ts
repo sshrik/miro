@@ -1,3 +1,1 @@
-import Character from "./Character";
-
-export { Character };
+export * from "./CharacterState";
