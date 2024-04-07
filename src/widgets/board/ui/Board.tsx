@@ -1,7 +1,9 @@
 "use client";
 
-import { CellEnum } from "@/entities/cell/model";
+import { CellSize } from "@/entities/cell/constants";
+import { CellEnum, isWall } from "@/entities/cell/model";
 import { DirectionEnum, type DirectionType } from "@/entities/direction/model";
+import { Position } from "@/entities/position/model";
 import {
 	type CharacterStateType,
 	CharacterStateEnum,
@@ -13,7 +15,7 @@ import { Controller } from "@/features/controller/ui";
 import { Maze as MazeClass } from "@/features/maze/model";
 import { Maze } from "@/features/maze/ui";
 import useCharacterPosition from "@/widgets/board/lib/useCharacterPosition";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 type BoardProps = {
 	width: number;
@@ -45,19 +47,19 @@ const Board: React.FC<BoardProps> = (props) => {
 		switch (direction) {
 			case DirectionEnum.Up:
 				if (row === 0) return false;
-				if (maze.maze[row - 1][col] === CellEnum.WALL) return false;
+				if (isWall(maze.maze[row - 1][col])) return false;
 				break;
 			case DirectionEnum.Down:
 				if (row === maxHeight - 1) return false;
-				if (maze.maze[row + 1][col] === CellEnum.WALL) return false;
+				if (isWall(maze.maze[row + 1][col])) return false;
 				break;
 			case DirectionEnum.Left:
 				if (col === 0) return false;
-				if (maze.maze[row][col - 1] === CellEnum.WALL) return false;
+				if (isWall(maze.maze[row][col - 1])) return false;
 				break;
 			case DirectionEnum.Right:
 				if (col === maxWidth - 1) return false;
-				if (maze.maze[row][col + 1] === CellEnum.WALL) return false;
+				if (isWall(maze.maze[row][col + 1])) return false;
 				break;
 		}
 
@@ -110,25 +112,60 @@ const Board: React.FC<BoardProps> = (props) => {
 		setPosition(start.row, start.col);
 	}, [setPosition, width, height]);
 
-	return (
-		<div className="absolute">
-			{maze && <Maze maze={maze} />}
-			<Controller
-				onMoveLeft={handleMoveLeft}
-				onMoveRight={handleMoveRight}
-				onMoveUp={handleMoveUp}
-				onMoveDown={handleMoveDown}
-			/>
-			{maze && (
+	const [maxPosition, setMaxPosition] = useState({ width: 0, height: 0 });
+
+	useEffect(() => {
+		if (window) {
+			setMaxPosition({
+				width: window.innerWidth,
+				height: window.innerHeight,
+			});
+
+			window.addEventListener("resize", () => {
+				setMaxPosition({
+					width: window.innerWidth,
+					height: window.innerHeight,
+				});
+			});
+		}
+	}, []);
+
+	const characterCenter = {
+		row: position.row * CellSize + CellSize / 2,
+		col: position.col * CellSize + CellSize / 2,
+	};
+
+	const maw = maxPosition.width / 2;
+	const mah = maxPosition.height / 2;
+
+	const cameraTop = characterCenter.row > mah ? mah - characterCenter.row : 0;
+
+	const cameraLeft = characterCenter.col > maw ? maw - characterCenter.col : 0;
+
+	if (maze) {
+		return (
+			<div
+				className="absolute transition-all duration-500"
+				style={{ top: cameraTop, left: cameraLeft }}
+			>
+				<Maze maze={maze} />
+				<Controller
+					onMoveLeft={handleMoveLeft}
+					onMoveRight={handleMoveRight}
+					onMoveUp={handleMoveUp}
+					onMoveDown={handleMoveDown}
+				/>
 				<Character
 					position={position}
 					direction={direction}
 					state={characterState}
 					onAnimationEnd={handleAnimationEnd}
 				/>
-			)}
-		</div>
-	);
+			</div>
+		);
+	}
+
+	return null;
 };
 
 export default Board;

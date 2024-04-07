@@ -1,11 +1,12 @@
 import { Cell } from "@/entities/cell/ui";
 import type { Maze as MazeClass } from "@/features/maze/model";
+import { memo } from "react";
 
 type MazeProps = {
 	maze: MazeClass;
 };
 
-const Maze: React.FC<MazeProps> = (props) => {
+const Maze: React.FC<MazeProps> = memo((props) => {
 	const { maze } = props;
 
 	return (
@@ -19,6 +20,6 @@ const Maze: React.FC<MazeProps> = (props) => {
 			))}
 		</div>
 	);
-};
+});
 
 export default Maze;
