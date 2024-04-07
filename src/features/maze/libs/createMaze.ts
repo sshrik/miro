@@ -99,7 +99,7 @@ const createMaze = (width: number, height: number) => {
 				maze[row][col] = specifyWall(
 					maze,
 					{ row, col },
-					{ row: maze[0].length, col: maze.length },
+					{ row: maze.length, col: maze[0].length },
 				);
 			}
 		}
@@ -243,11 +243,11 @@ const isIn = (direction: DirectionType, position: Position, max: Position) => {
 		case DirectionEnum.Up:
 			return position.row > 0;
 		case DirectionEnum.Down:
-			return position.row < max.row;
+			return position.row < max.row - 1;
 		case DirectionEnum.Left:
 			return position.col > 0;
 		case DirectionEnum.Right:
-			return position.col < max.col;
+			return position.col < max.col - 1;
 	}
 };
 
