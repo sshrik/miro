@@ -37,7 +37,23 @@ const Controller: React.FC<ControllerProps> = (props) => {
 		};
 	}, [onMoveLeft, onMoveRight, onMoveUp, onMoveDown]);
 
-	return <div className="hidden" />;
+	return (
+		<div className="relative w-screen h-screen bg-transparent" style={{zIndex: 9999}}>
+			<div className="absolute top-0 left-0 w-full h-20 bg-transparent" onClick={onMoveUp} />
+			<div
+				className="absolute bottom-0 left-0 w-full h-20 bg-transparent"
+				onClick={onMoveDown}
+			/>
+			<div
+				className="absolute top-0 left-0 w-20 h-full bg-transparent"
+				onClick={onMoveLeft}
+			/>
+			<div
+				className="absolute top-0 right-0 w-20 h-full bg-transparent"
+				onClick={onMoveRight}
+			/>
+		</div>
+	);
 };
 
 export default Controller;

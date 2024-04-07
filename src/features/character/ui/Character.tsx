@@ -15,10 +15,11 @@ type CharacterProps = {
 	direction: DirectionType;
 	state: CharacterStateType;
 	onAnimationEnd: () => void;
+	cameraPosition: Position;
 };
 
 const Character: React.FC<CharacterProps> = (props) => {
-	const { position, direction, state, onAnimationEnd } = props;
+	const { position, direction, state, onAnimationEnd, cameraPosition } = props;
 
 	const stateAnimation = useMemo(() => {
 		if (isWalkState(state)) return "animate-character-walk";
@@ -64,7 +65,7 @@ const Character: React.FC<CharacterProps> = (props) => {
 			width={CellSize}
 			height={CellSize}
 			className={clsx("absolute transition-all duration-500", stateAnimation)}
-			style={{ top: position.row * CellSize, left: position.col * CellSize }}
+			style={{ top: position.row * CellSize + cameraPosition.row, left: position.col * CellSize + cameraPosition.col }}
 			onAnimationEnd={onAnimationEnd}
 		/>
 	);
