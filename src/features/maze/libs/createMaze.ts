@@ -165,7 +165,7 @@ const specifyWall = (maze: CellType[][], position: Position, max: Position) => {
 				}
 
 				// ← → ↓
-				return CellEnum.WALL_LEFT_CORNER;
+				return CellEnum.WALL_RIGHT_CORNER;
 			}
 			if (isWallUp(maze, position, max)) {
 				// ← → ↑
@@ -177,9 +177,12 @@ const specifyWall = (maze: CellType[][], position: Position, max: Position) => {
 		if (isWallDown(maze, position, max)) {
 			if (isWallUp(maze, position, max)) {
 				// ← ↓ ↑
-				return CellEnum.WALL_VERTICAL_LEFT;
+				return CellEnum.WALL_RIGHT_CORNER;
 			}
 			// ← ↓
+			if (isUpWallIsRightWallType(maze, position, max)) {
+				return CellEnum.WALL_VERTICAL_RIGHT;
+			}
 			return CellEnum.WALL_RIGHT_CORNER;
 		}
 
