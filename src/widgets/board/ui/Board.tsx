@@ -1,9 +1,8 @@
 "use client";
 
 import { CellSize } from "@/entities/cell/constants";
-import { CellEnum, isWall } from "@/entities/cell/model";
+import { isWall } from "@/entities/cell/model";
 import { DirectionEnum, type DirectionType } from "@/entities/direction/model";
-import { Position } from "@/entities/position/model";
 import {
 	type CharacterStateType,
 	CharacterStateEnum,
@@ -15,7 +14,7 @@ import { Controller } from "@/features/controller/ui";
 import { Maze as MazeClass } from "@/features/maze/model";
 import { Maze } from "@/features/maze/ui";
 import useCharacterPosition from "@/widgets/board/lib/useCharacterPosition";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type BoardProps = {
 	width: number;
