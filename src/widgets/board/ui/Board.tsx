@@ -159,7 +159,7 @@ const Board: React.FC<BoardProps> = (props) => {
 
 	if (maze) {
 		return (
-			<div className="relative transition-all duration-500">
+			<div className="relative transition-all duration-500 overflow-hidden">
 				<Controller
 					onMoveLeft={handleMoveLeft}
 					onMoveRight={handleMoveRight}

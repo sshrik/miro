@@ -71,7 +71,7 @@ const StartPage: React.FC<StartGameProps> = (props) => {
 	}, [addCharacter]);
 
 	return (
-		<div className="flex justify-center items-center relative w-screen h-screen">
+		<div className="flex justify-center items-center relative w-screen h-screen overflow-hidden">
 			<div>{renderCharacter}</div>
 			<div className="flex flex-col gap-8 relative p-8 bg-white drop-shadow-md">
 				<h1 className="text-xl font-bold">팽귄 대모험</h1>
