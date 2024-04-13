@@ -19,10 +19,12 @@ import { useEffect, useState } from "react";
 type BoardProps = {
 	width: number;
 	height: number;
+	onGameStart: () => void;
+	onGameEnd: () => void;
 };
 
 const Board: React.FC<BoardProps> = (props) => {
-	const { width, height } = props;
+	const { width, height, onGameStart, onGameEnd } = props;
 
 	const [maze, setMaze] = useState<MazeClass | null>(null);
 
@@ -128,6 +130,20 @@ const Board: React.FC<BoardProps> = (props) => {
 			});
 		}
 	}, []);
+
+	useEffect(() => {
+		if (maze) {
+			const finish = maze.getEnd();
+
+			if (
+				position.row === finish.row &&
+				position.col === finish.col &&
+				isIdleState(characterState)
+			) {
+				onGameEnd();
+			}
+		}
+	}, [maze, position, characterState, onGameEnd]);
 
 	const characterCenter = {
 		row: position.row * CellSize + CellSize / 2,

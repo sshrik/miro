@@ -1,3 +1,4 @@
+import GamePage from "./GamePage";
 import StartPage from "./StartPage";
 
-export { StartPage };
+export { GamePage, StartPage };
