@@ -150,7 +150,7 @@ const Board: React.FC<BoardProps> = (props) => {
 					onMoveUp={handleMoveUp}
 					onMoveDown={handleMoveDown}
 				/>
-				<Maze maze={maze} style={{ top: cameraTop, left: cameraLeft }}/>
+				<Maze maze={maze} style={{ top: cameraTop, left: cameraLeft }} />
 				<Character
 					position={position}
 					direction={direction}
