@@ -32,8 +32,8 @@ const StartPage: React.FC<StartGameProps> = (props) => {
 	const addCharacter = () => {
 		const MAX_CHARACTER = 100;
 
-		const top = Math.ceil(Math.random() * 100);
-		const left = Math.ceil(Math.random() * 100);
+		const top = Math.ceil(Math.random() * 120 - 20);
+		const left = Math.ceil(Math.random() * 120 - 20);
 		const rotate = Math.random() * 360;
 
 		if (bgCharacter.length > MAX_CHARACTER) {
