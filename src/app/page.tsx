@@ -3,6 +3,7 @@
 import StartPage from "@/pages/start/StartPage";
 import GamePage from "@/pages/game/GamePage";
 import { useState } from "react";
+import { useExternalBrowser } from "@/shared/hook";
 
 type GameState = "home" | "playing" | "end";
 
@@ -16,6 +17,8 @@ export default function Home() {
 	const handleGameEnd = () => {
 		setGameState("end");
 	};
+
+	useExternalBrowser();
 
 	if (gameState === "home") {
 		return <StartPage onGameStart={handleGameStart} />;
