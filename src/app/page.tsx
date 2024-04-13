@@ -1,6 +1,6 @@
 "use client";
 
-import { StartPage } from "@/pages/game";
+import StartPage from "@/pages/start/StartPage";
 import GamePage from "@/pages/game/GamePage";
 import { useState } from "react";
 
