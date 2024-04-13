@@ -65,7 +65,10 @@ const Character: React.FC<CharacterProps> = (props) => {
 			width={CellSize}
 			height={CellSize}
 			className={clsx("absolute transition-all duration-500", stateAnimation)}
-			style={{ top: position.row * CellSize + cameraPosition.row, left: position.col * CellSize + cameraPosition.col }}
+			style={{
+				top: position.row * CellSize + cameraPosition.row,
+				left: position.col * CellSize + cameraPosition.col,
+			}}
 			onAnimationEnd={onAnimationEnd}
 		/>
 	);

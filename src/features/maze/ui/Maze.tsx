@@ -20,11 +20,14 @@ const Maze: React.FC<MazeProps> = (props) => {
 						))}
 					</div>
 				))}
-			</div>)
+			</div>
+		);
 	}, [maze]);
 
 	return (
-		<div className="absolute duration-500" style={style}>{mazeComponent}</div>
+		<div className="absolute duration-500" style={style}>
+			{mazeComponent}
+		</div>
 	);
 };
 

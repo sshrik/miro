@@ -38,8 +38,14 @@ const Controller: React.FC<ControllerProps> = (props) => {
 	}, [onMoveLeft, onMoveRight, onMoveUp, onMoveDown]);
 
 	return (
-		<div className="relative w-screen h-screen bg-transparent" style={{zIndex: 9999}}>
-			<div className="absolute top-0 left-0 w-full h-20 bg-transparent" onClick={onMoveUp} />
+		<div
+			className="relative w-screen h-screen bg-transparent"
+			style={{ zIndex: 9999 }}
+		>
+			<div
+				className="absolute top-0 left-0 w-full h-20 bg-transparent"
+				onClick={onMoveUp}
+			/>
 			<div
 				className="absolute bottom-0 left-0 w-full h-20 bg-transparent"
 				onClick={onMoveDown}

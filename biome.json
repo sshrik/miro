@@ -10,8 +10,9 @@
 			"suspicious": {
 				"noArrayIndexKey": "off"
 			},
-			"ally": {
-				"useKeyWithClickEvents": "off"
+			"a11y": {
+				"useKeyWithClickEvents": "off",
+				"useButtonType": "off"
 			}
 		}
 	}
