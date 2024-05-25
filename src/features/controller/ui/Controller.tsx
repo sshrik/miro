@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect } from "react";
 
 type ControllerProps = {
@@ -38,26 +39,45 @@ const Controller: React.FC<ControllerProps> = (props) => {
 	}, [onMoveLeft, onMoveRight, onMoveUp, onMoveDown]);
 
 	return (
-		<div
-			className="relative w-screen h-screen bg-transparent"
-			style={{ zIndex: 9999 }}
-		>
-			<div
-				className="absolute top-0 left-0 w-full h-20 bg-transparent"
-				onClick={onMoveUp}
-			/>
-			<div
-				className="absolute bottom-0 left-0 w-full h-20 bg-transparent"
-				onClick={onMoveDown}
-			/>
-			<div
-				className="absolute top-0 left-0 w-20 h-full bg-transparent"
-				onClick={onMoveLeft}
-			/>
-			<div
-				className="absolute top-0 right-0 w-20 h-full bg-transparent"
-				onClick={onMoveRight}
-			/>
+		<div className="absolute right-4 bottom-4 flex flex-col gap-2 w-fit h-fit z-50">
+			<div className="flex flex-row justify-center">
+				<button onClick={onMoveUp}>
+					<Image
+						src="/assets/controller/button-up.png"
+						width={60}
+						height={65}
+						alt="button-up-image"
+					/>
+				</button>
+			</div>
+			<div className="flex flex-row gap-[68px]">
+				<button onClick={onMoveLeft}>
+					<Image
+						src="/assets/controller/button-left.png"
+						width={65}
+						height={60}
+						alt="button-left-image"
+					/>
+				</button>
+				<button onClick={onMoveRight}>
+					<Image
+						src="/assets/controller/button-right.png"
+						width={65}
+						height={60}
+						alt="button-right-image"
+					/>
+				</button>
+			</div>
+			<div className="flex flex-row justify-center">
+				<button onClick={onMoveDown}>
+					<Image
+						src="/assets/controller/button-down.png"
+						width={60}
+						height={65}
+						alt="button-bottom-image"
+					/>
+				</button>
+			</div>
 		</div>
 	);
 };

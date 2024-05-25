@@ -159,14 +159,20 @@ const Board: React.FC<BoardProps> = (props) => {
 
 	if (maze) {
 		return (
-			<div className="relative transition-all duration-500 overflow-hidden">
+			<div className="relative transition-all duration-500 overflow-hidden w-screen h-screen">
 				<Controller
 					onMoveLeft={handleMoveLeft}
 					onMoveRight={handleMoveRight}
 					onMoveUp={handleMoveUp}
 					onMoveDown={handleMoveDown}
 				/>
-				<Maze maze={maze} style={{ top: cameraTop, left: cameraLeft }} />
+				<Maze
+					maze={maze}
+					style={{
+						top: cameraTop,
+						left: cameraLeft,
+					}}
+				/>
 				<Character
 					position={position}
 					direction={direction}
