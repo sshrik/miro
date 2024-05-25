@@ -107,7 +107,11 @@ const createMaze = (width: number, height: number) => {
 
 	// pick start and end
 
-	const start = pickRandomCell();
+	let start = pickRandomCell();
+
+	while (maze[start.row * 2 + 1][start.col * 2 + 1] === CellEnum.WALL) {
+		start = pickRandomCell();
+	}
 
 	maze[start.row * 2 + 1][start.col * 2 + 1] = CellEnum.START;
 
