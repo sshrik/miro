@@ -39,7 +39,7 @@ const Controller: React.FC<ControllerProps> = (props) => {
 	}, [onMoveLeft, onMoveRight, onMoveUp, onMoveDown]);
 
 	return (
-		<div className="absolute right-4 bottom-4 flex flex-col gap-2 w-fit h-fit z-50">
+		<div className="absolute right-4 bottom-20 flex flex-col gap-2 w-fit h-fit z-50">
 			<div className="flex flex-row justify-center">
 				<button onClick={onMoveUp}>
 					<Image
