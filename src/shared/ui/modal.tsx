@@ -1,4 +1,5 @@
-import type { CSSProperties } from "react";
+import type { CSSProperties, MouseEventHandler } from "react";
+import { createPortal } from "react-dom";
 
 export type ModalProps = {
 	children: React.ReactNode;
@@ -12,12 +13,14 @@ export type ModalProps = {
 const Modal: React.FC<ModalProps> = (props) => {
 	const { children, opened, onClose, styles } = props;
 
-	const handleClose = () => {
+	const handleClose: MouseEventHandler = (e) => {
+		e.stopPropagation();
 		onClose();
 	};
 
 	return (
-		opened && (
+		opened &&
+		createPortal(
 			<div
 				className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center"
 				onClick={handleClose}
@@ -29,7 +32,8 @@ const Modal: React.FC<ModalProps> = (props) => {
 				>
 					{children}
 				</div>
-			</div>
+			</div>,
+			document.body,
 		)
 	);
 };

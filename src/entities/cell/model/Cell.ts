@@ -12,6 +12,8 @@ export enum CellEnum {
 	WALL_ALONE = "WALL_ALONE",
 	START = "START",
 	END = "END",
+	UNKNOWN = "UNKNOWN",
+	CHARACTER = "CHARACTER",
 }
 
 export type CellType = keyof typeof CellEnum;

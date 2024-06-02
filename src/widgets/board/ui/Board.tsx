@@ -3,6 +3,7 @@
 import { CellSize } from "@/entities/cell/constants";
 import { isWall } from "@/entities/cell/model";
 import { DirectionEnum, type DirectionType } from "@/entities/direction/model";
+import type { Position } from "@/entities/position/model";
 import {
 	type CharacterStateType,
 	CharacterStateEnum,
@@ -13,6 +14,8 @@ import { Character } from "@/features/character/ui";
 import { Controller } from "@/features/controller/ui";
 import { Maze as MazeClass } from "@/features/maze/model";
 import { Maze } from "@/features/maze/ui";
+import { MiniMap as MiniMapClass } from "@/features/mini-map/model";
+import { MiniMap } from "@/features/mini-map/ui";
 import useCharacterPosition from "@/widgets/board/lib/useCharacterPosition";
 import { useEffect, useState } from "react";
 
@@ -27,6 +30,8 @@ const Board: React.FC<BoardProps> = (props) => {
 	const { width, height, onGameStart, onGameEnd } = props;
 
 	const [maze, setMaze] = useState<MazeClass | null>(null);
+
+	const [miniMap, setMiniMap] = useState<MiniMapClass | null>(null);
 
 	const { moveLeft, moveRight, moveDown, moveUp, setPosition, ...position } =
 		useCharacterPosition();
@@ -67,10 +72,20 @@ const Board: React.FC<BoardProps> = (props) => {
 		return true;
 	};
 
+	const updateMiniMap = (position: Position) => {
+		if (miniMap && maze) {
+			miniMap.lightUpCell(maze.maze, position.row, position.col);
+		}
+	};
+
 	const handleMoveLeft = () => {
 		setDirection(DirectionEnum.Left);
 		if (canMove(DirectionEnum.Left)) {
 			setCharacterState(createCharacterState(CharacterStateEnum.WALK));
+			updateMiniMap({
+				row: position.row,
+				col: position.col - 1,
+			});
 			moveLeft();
 		} else setCharacterState(createCharacterState(CharacterStateEnum.BLOCKED));
 	};
@@ -79,6 +94,10 @@ const Board: React.FC<BoardProps> = (props) => {
 		setDirection(DirectionEnum.Right);
 		if (canMove(DirectionEnum.Right)) {
 			setCharacterState(createCharacterState(CharacterStateEnum.WALK));
+			updateMiniMap({
+				row: position.row,
+				col: position.col + 1,
+			});
 			moveRight();
 		} else setCharacterState(createCharacterState(CharacterStateEnum.BLOCKED));
 	};
@@ -87,6 +106,10 @@ const Board: React.FC<BoardProps> = (props) => {
 		setDirection(DirectionEnum.Up);
 		if (canMove(DirectionEnum.Up)) {
 			setCharacterState(createCharacterState(CharacterStateEnum.WALK));
+			updateMiniMap({
+				row: position.row - 1,
+				col: position.col,
+			});
 			moveUp();
 		} else setCharacterState(createCharacterState(CharacterStateEnum.BLOCKED));
 	};
@@ -95,6 +118,10 @@ const Board: React.FC<BoardProps> = (props) => {
 		setDirection(DirectionEnum.Down);
 		if (canMove(DirectionEnum.Down)) {
 			setCharacterState(createCharacterState(CharacterStateEnum.WALK));
+			updateMiniMap({
+				row: position.row + 1,
+				col: position.col,
+			});
 			moveDown();
 		} else setCharacterState(createCharacterState(CharacterStateEnum.BLOCKED));
 	};
@@ -109,8 +136,13 @@ const Board: React.FC<BoardProps> = (props) => {
 		const maze = new MazeClass(width, height);
 		setMaze(maze);
 
+		const miniMap = new MiniMapClass(width, height);
+		setMiniMap(miniMap);
+
 		const start = maze.getStart();
 		setPosition(start.row, start.col);
+
+		miniMap.lightUpCell(maze.maze, start.row, start.col);
 	}, [setPosition, width, height]);
 
 	const [maxPosition, setMaxPosition] = useState({ width: 0, height: 0 });
@@ -173,6 +205,7 @@ const Board: React.FC<BoardProps> = (props) => {
 						left: cameraLeft,
 					}}
 				/>
+				{miniMap && <MiniMap map={miniMap} now={position} />}
 				<Character
 					position={position}
 					direction={direction}
